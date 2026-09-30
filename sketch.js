@@ -35,9 +35,10 @@ function draw() {
   background(248);
   hoverIndex = -1;
 
-  // Title and subtitle
+  // Title and subtitle (alignment locked to prevent shifting)
   fill(30);
   noStroke();
+  textAlign(LEFT, TOP);
   textSize(18);
   textStyle(BOLD);
   text("NYC Payroll: Borough Pay and Overtime Breakdown", 40, 30);
@@ -50,7 +51,7 @@ function draw() {
   // Buttons
   drawButtons();
 
-  // Chart coordinates
+  // Chart layout
   let startX = 80;
   let groundY = 440;
   let chartW = 700;
@@ -83,7 +84,7 @@ function draw() {
     text("$" + v + labelUnit, startX - 8, yPos);
   }
 
-  // Draw the bars
+  // Draw bars
   let slotW = chartW / data.length;
   let barW = slotW * 0.55;
 
@@ -92,7 +93,7 @@ function draw() {
     let barH = map(currentHeights[i], 0, maxLimit, 0, chartH);
     let y = groundY - barH;
 
-    // Check if mouse is hovering over this bar
+    // Check hover
     if (mouseX >= x && mouseX <= x + barW && mouseY >= y && mouseY <= groundY) {
       hoverIndex = i;
     }
